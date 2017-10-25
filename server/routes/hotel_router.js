@@ -126,32 +126,20 @@ router.put('/editItem/:id', function(req, res){
     })
 }); //End PUT route that edits pets
 
-<<<<<<< HEAD
-// //This POST route edits whether the pets are in the hospital or not
-router.post('/in/:id', function(req, res){
-    var petcheck = req.params.id;
-    var checkInDate = req.body;
-    console.log('In out PUT:', petcheck, checInDate);
-=======
 // //This PUT route edits whether the pets are in the hospital or not
 router.put('/inOut/:id', function(req, res){
     var inOutID = req.params.id;
     var petEdit = req.body;
     console.log('In out PUT:', inOutId, petEdit);
->>>>>>> master
     pool.connect(function(errorConnectingToDB, db, done){
         if(errorConnectingToDB){
             console.log('PUT error', errorConnectingToDB);
             res.sendStatus(501);
         } else {
-            var queryText = 'INSERT INTO "pethotel_visits" ("checkin", "petcheck") VALUES($1, $2)'
-            db.query(queryText, [checkInDate, inOutID], function(errorMakingQuery, result){
+            var queryText = 'UPDATE "pethotel_visits" SET “checkout” = $1 WHERE id = $2 VALUES ($1, $2);';
+            db.query(queryText, [petEdit.checkout, inOutID], function(errorMakingQuery, result){
                 if(errorMakingQuery){
-<<<<<<< HEAD
-                    conosle.log('error PUT query for in button', errorMakingQuery);
-=======
                     console.log('error PUT query', errorMakingQuery);
->>>>>>> master
                     res.sendStatus(500);
                 } else {
                     res.sendStatus(201);
@@ -182,6 +170,28 @@ pool.connect(function(errorConnectingToDB, db, done){
     }
 })
 }); //end delete route
+
+//This post route is checking in pets to the hotel.
+router.post('/in', function (req, res) {
+    var object = req.body;
+    
+        pool.connect(function (errorConnectingToDB, db, done) {
+            if (errorConnectingToDB) {
+                console.log('PUT error', errorConnectingToDB);
+                res.sendStatus(501);
+            } else {
+                var queryText = 'INSERT INTO "pethotel_visits" ("checkin", "petcheck") VALUES($1, $2)'
+                db.query(queryText, [object.checkin, object.petcheck], function (errorMakingQuery, result) {
+                    if (errorMakingQuery) {
+                        console.log('error PUT query', errorMakingQuery);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(201);
+                    }
+                })
+            }
+        })
+    }); //End POST for in
 
 
 
