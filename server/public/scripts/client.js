@@ -7,13 +7,14 @@ function readyNow() {
     getOwners();
     getPets();
     $('#ownerReg').on('click', addOwner);
-    //click handlers.
+    $("maintable").on("click", "#deleteBtn", deletePet);
     $('.table').on('click', '#checkOutBtn', checkOutFunction);
     $(".table").on('click', "#checkInBtn" , inClicked);
 
 
 
 }
+
 function addOwner() {
 
     var firstIn = $('#ownerFirstNameIn').val();
@@ -22,11 +23,7 @@ function addOwner() {
         first: firstIn,
         last: lastIn
     }
-    
-    sendOwner(owner)
-
-
-    
+    sendOwner(owner)    
 }
 
 
@@ -46,14 +43,6 @@ function getOwners() { //getting List data append in done
     });//end of fail
 } //end of getTables
 
-// function appendOwners(array) {
-//     for (var i = 0; i < array.length; i++) {
-//         var owner = array[i];
-//         var $dropDown = $("#ownerDropDown").append('<option value="data-id= ">' + owner.firstname + owner.lastname + '</option>');
-//     }
-//     console.log('owner');
-    
-// };
 
 //get pets for DOM
 function getPets() {
@@ -64,7 +53,7 @@ function getPets() {
     }).done(function (response) {
         console.log(response);
         var completeList = response
-        appendPets(completeList)
+        appendPets(completeList);
         }).fail(function (error) {
         alert('something went wront in getPets', error)
     });//end of fail
@@ -129,7 +118,7 @@ function editItem() {
 // DELETE ROUTES
 
 function deletePet() {
-    console.log('in deletePet');
+    console.log('delete clicked');
     $.ajax({
         method: 'DELETE',
         url: 'hotel/deletePet/:id'
