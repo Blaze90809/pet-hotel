@@ -10,6 +10,7 @@ function readyNow() {
     $('.table').on('click', '#checkInBtn', checkOutFunction);
 
     //click handlers.
+    $("#maintable").on('click', "#checkInBtn" ,inClicked());
 
 
 
@@ -140,6 +141,20 @@ function deletePet() {
     })//end of fail
 }//end deletePet
 
+function inClicked();
+    console.log('clicked in');
+    function sendPet() {
+        console.log('In sendPet');
+        $.ajax({
+            method: 'POST',
+            url: '/hotel/in' + petcheck,
+            Data: visitin
+        }).done(function (response) {
+            console.log(response);
+        }).fail(function (error) {
+            alert('something went wrong in sendPet', error)
+        })
+    }
 function checkOutFunction(){
   var checkDate = Date.now()
   var id = $(this).closest('tr').data() // Need to figure out what this data will be called.
