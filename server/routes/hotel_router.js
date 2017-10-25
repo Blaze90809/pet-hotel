@@ -72,7 +72,7 @@ router.post('/owner', function (req, res) {
                     console.log('error sending owner POST', error)
                     res.sendStatus(501);
                 } else {
-                    res.send(result.rows);
+                    res.sendStatus(200);
                 }
             });
         }
@@ -96,7 +96,7 @@ router.post('/pet', function (req, res) {
                         console.log('error sending PET post', error)
                         res.sendStatus(501);
                     } else {
-                        res.send(result.rows);
+                        res.sendStatus(200);
                     }
                 })
         }
@@ -164,7 +164,7 @@ pool.connect(function(errorConnectingToDB, db, done){
             if(errorMakingQuery){
                 console.log('error making query', errorMakingQuery);
             } else {
-                res.send(result.rows);
+                res.sendStatus(200);
             }
         })
     }
