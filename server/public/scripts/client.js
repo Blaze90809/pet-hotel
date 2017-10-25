@@ -4,7 +4,8 @@ $(document).ready(readyNow);
 // }
 function readyNow() {
     console.log('js and jq sourced');
-    getPets()
+    getOwners();
+    getPets();
     $('#ownerReg').on('click', addOwner)
     //click handlers.
 
@@ -27,7 +28,7 @@ function addOwner() {
 }
 
 
-//GET ROUTES
+//GET ROUTES -- get owners for DOM
 function getOwners() { //getting List data append in done
     console.log('in getOwners');
     // ajax call to server to get List
@@ -35,14 +36,24 @@ function getOwners() { //getting List data append in done
         method: 'GET',
         url: '/hotel/owner',
     }).done(function (response) {
-        console.log(response);
-        var list = response;
-        // appendToDom(list);
+        console.log('response', response);
+        var ownerList = response;
+        appendOwners(ownerList);
     }).fail(function (error) {
         alert('something went wrong in getOwners', error);
     });//end of fail
 } //end of getTables
 
+function appendOwners(array) {
+    for (var i = 0; i < array.length; i++) {
+        var owner = array[i];
+        var $dropDown = $("#ownerDropDown").append('<option value="data-id= ">' + owner.firstname + owner.lastname + '</option>');
+    }
+    console.log('owner');
+    
+};
+
+//get pets for DOM
 function getPets() {
     console.log('in getPets');
     $.ajax({
