@@ -81,8 +81,8 @@ function inOut(){
         url:'hotel/inOut/:id',
         data: check
     }).done(function(response){
-        console.log(responce);  
-    }).fail(function (responce){
+        console.log(response);  
+    }).fail(function (response){
         alert('something wrong in inOut')
     })
 }
@@ -93,8 +93,8 @@ function editItem(){
         method: 'PUT',
         url: 'hotel/editItem/:id',
         data: changePet
-    }).done(function(responce){
-        console.log(responce);
+    }).done(function(response){
+        console.log(response);
     }).fail(function(error){
         alert('something wrong in editItem');
     })//end of fail
@@ -107,8 +107,8 @@ function deletePet(){
     $.ajax({
         method:'DELETE',
         url: 'hotel/deletePet/:id'
-    }).done(function(responce){
-        console.log(responce);
+    }).done(function(response){
+        console.log(response);
     }).fail(function(error){
         alert('something wrong in deletePet');
     })//end of fail
