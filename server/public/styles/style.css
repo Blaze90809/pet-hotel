@@ -16,6 +16,7 @@ body {
     text-align: center;
     background-color: #0E615E;
     color: #FFFFFF;
+    font-family: 'Bungee Inline', cursive;
 }
 
 .btn {
@@ -33,6 +34,7 @@ body {
 
 #ownerReg {
     width: 220px;
+    height: 50px;
 }
 
 h1 {
