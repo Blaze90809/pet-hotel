@@ -136,7 +136,7 @@ router.put('/inOut/:id', function(req, res){
             conosle.log('PUT error', errorConnectingToDB);
             res.sendStatus(501);
         } else {
-            var queryText = 'SELECT * FROM "pethotel_visits" WHERE "petcheck" = $1;';
+            var queryText = 'INSERT INTO "pethotel_visits" ("checkin", "petcheck") VALUES($1, $2)'
             db.query(queryText, [inOutID], function(errorMakingQuery, result){
                 if(errorMakingQuery){
                     conosle.log('error PUT query', errorMakingQuery);

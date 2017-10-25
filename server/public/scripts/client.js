@@ -12,7 +12,7 @@ function readyNow(){
     getPets()
 
     //click handlers.
-    
+    $("#checkInBtn").on('click', inClicked());
 }
 
 //GET ROUTES
@@ -113,3 +113,18 @@ function deletePet(){
         alert('something wrong in deletePet');
     })//end of fail
 }//end deletePet
+
+function inClicked();
+    console.log('clicked in');
+    function sendPet() {
+        console.log('In sendPet');
+        $.ajax({
+            method: 'POST',
+            url: '/hotel/inOut',
+            Data: pet
+        }).done(function (response) {
+            console.log(response);
+        }).fail(function (error) {
+            alert('something went wrong in sendPet', error)
+        })
+    }
