@@ -11,7 +11,7 @@ function readyNow(){
     console.log('js and jq sourced');
     getPets()
 
-    //click handlers.
+    //click handlers
     
 }
 
