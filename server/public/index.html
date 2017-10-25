@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vendors/jquery.js"></script>
+    <script src="scripts/client.js"></script>
+    <link rel="stylesheet" href="vendors/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendors/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <title>Document</title>
+</head>
+<body> <!-- body-->
+
+    <ul class="nav nav-tabs"> <!-- navigation bar -->
+        <li role="presentation" class="active"><a href="#">Home</a></li>
+        <li role="presentation"><a href="#">Visits</a></li>
+    </ul> <!-- navigation bar -->
+        
+    <div class="container-fluid"> <!-- container -->
+        <div class="row"> <!-- header row -->
+            <div class="col-md-12 header center-block">
+                <div>Pet Hotel</div>
+            </div>
+        </div> <!-- header row -->
+
+        <div class="row ownerReg"><!-- owner registration section -->
+            <div class="formHolder"><!--div for form -->
+                <form><!-- form --> 
+                    <div class="form-group">
+                        <h1>Owner Registration:</h1>
+                        <label for="ownerFirstNameInput">First Name</label>
+                        <input type="text" class="form-control ownerInput" id="ownerFirstNameIn" placeholder="Enter Your First Name">
+                        <label for="ownerLasNameInput">Last Name</label>
+                        <input type="text" class="form-control ownerInput" id="ownerLastName" placeholder="Enter Your Last Name">
+                        <button class="btn btn-default" id="ownerReg">Complete Owner Registration</button>
+                    </div>
+                </form> <!-- end form -->
+            </div> <!--div for form -->
+        </div> <!-- end owner registration section -->
+
+        <div class="row petReg"><!-- pet registration section -->
+            <div class="formHolder"><!-- div form holder -->
+                <form><!-- form -->
+                    <div class="form-group"><!-- form group -->
+                        <h1>Pet Registration</h1>
+                        
+                        <div class="dropdown"><!-- owner dropdown -->
+                            <select name="owners" id="ownerDropDown">
+                                <option value="owner1">owner one</option><!-- NEEDS TO BE APPENDED -->
+                                <option value="owner2">owner two</option><!-- NEEDS TO BE APPENDED -->
+                                <option value="owner3">owner three</option><!-- NEEDS TO BE APPENDED -->
+                            </select>
+                        </div> <!-- owner dropdown -->
+                        <label for="petName">Pet Name</label>
+                        <input type="text" class="form-control petInput" id="petName" placeholder="Enter Your Pet's Name">
+                        <label for="petColor">Pet Color</label>
+                        <input type="text" class="form-control petInput" id="petColor" placeholder="What color is your pet?">
+                        <label for="petBreed">Pet Breed</label>
+                        <input type="text" class="form-control petInput" id="petBreed" placeholder="What breed is your pet?">
+                        <button class="btn btn-default" id="petReg">Register Pet</button>
+                    </div><!-- end form group -->
+                </form><!-- end form -->
+            </div><!-- div form holder -->
+        </div> <!-- pet registration section -->
+
+        <div class="row petVisits"> <!-- Pet visits section -->
+
+            <h1>Pet Visits</h1>
+            <table class="table"><!-- Pet Table -->
+            <!-- Table Headers -->
+                <th>Owner</th>
+                <th>Pet</th>
+                <th>Breed</th>
+                <th>Color</th>
+                <th>Update</th>
+                <th>Delete</th>
+                <th>Check In/Out</th>
+            <!-- Table Headers -->
+            
+            <tbody>
+                <tr> <!-- Rows are appended -->
+                    <td>John Doe</td> 
+                    <td>Lassie</td> <!-- Needs to be editable -->
+                    <td>Border Collie</td> <!-- Needs to be editable -->
+                    <td>So Pretty</td> <!-- Needs to be editable -->
+                    <td><button class="btn btn-default" id="updateBtn">Update</button></td> 
+                    <td><button class="btn btn-default" id="deleteBtn">Delete</button></td>
+                    <td><button class="btn btn-default" id="checkInBtn">Check In</button><button class="btn btn-default" id="checkOutBtn">Check Out</button></td>
+                </tr>
+            </tbody>
+            
+            </table><!-- End Pet Table -->
+        </div><!-- End pet visits section -->
+
+
+    </div> <!-- container -->
+
+</body> <!-- End body-->
+</html>
