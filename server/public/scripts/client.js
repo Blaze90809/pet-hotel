@@ -10,6 +10,7 @@ $(document).ready(readyNow);
 function readyNow(){
     console.log('js and jq sourced');
     getPets()
+    $('.table').on('click', '#checkInBtn', checkOutFunction)
 
     //click handlers.
     
@@ -74,11 +75,11 @@ function getPets(){
 
 //PUT ROUTES
 
-function inOut(){
+function Out(date){
     console.log('in inOut');
     $.ajax({
         method: 'PUT',
-        url:'hotel/inOut/:id',
+        url:'hotel/inOut/' + id,
         data: check
     }).done(function(response){
         console.log(response);  
@@ -113,3 +114,11 @@ function deletePet(){
         alert('something wrong in deletePet');
     })//end of fail
 }//end deletePet
+
+function checkOutFunction(){
+  var checkDate = Date.now()
+  var id = $(this).closest('tr').data() // Need to figure out what this data will be called.
+  var outObject = {checkDate}
+  console.log(checkDate);
+  inOut(outObject);
+}
