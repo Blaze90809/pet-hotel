@@ -113,7 +113,7 @@ router.put('/editItem/:id', function(req, res){
             conosle.log('error PUT query', errorConnectingToDB);
             res.sendStatus(501);
         } else {
-            var queryText = //PUT route edits
+            var queryText = 'UPDATE "pethotel_pets" SET "petname"=$1, "breed"=$2, "color"=$3 WHERE "id" = $4;';
             db.query(queryText, , function(errorMakingQuery, result){
                 if(errorMakingQuery){
                     conosle.log('error PUT query', errorMakingQuery);
