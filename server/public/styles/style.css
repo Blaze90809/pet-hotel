@@ -1,24 +1,46 @@
 body {
-    padding-top: 70px;
+    background-color: #E5EDE4;
+    color: #041A1F;   
 }
 
 .container-fluid {
-    padding-left: 30px;
-    padding-right: 30px;
+    background-color: #E5EDE4;
 }
 
 .nav {
-    background-color: lightblue;
+    background-color: #163333;
 }
 
 .header {
     font-size: 60px;
     text-align: center;
-    background-color: lightcoral;
+    background-color: #0E615E;
+    color: #FFFFFF;
 }
 
+.btn {
+    width: 100px;
+    background-color: #0E615E;
+    color: #FFFFFF;
+    
+    text-shadow: none;
+}
+
+.btn:hover {
+    background-color: #13827E;
+    color: #D9E0D7;
+}
+
+#ownerReg {
+    width: 220px;
+}
+
+h1 {
+    font-size: 24px;
+}
 .ownerReg {
-    background-color: lightseagreen;
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
 .ownerInput {
@@ -26,8 +48,17 @@ body {
     display: inline-block;
 }
 
+.dropdown {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#ownerDropDown {
+    width: 400px;
+}
+
 .petReg {
-    background-color: lightgoldenrodyellow
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
 .petInput {
@@ -36,5 +67,6 @@ body {
 }
 
 .petVisits {
-    background-color: lightsalmon;
+    margin-left: 30px;
+    margin-right: 30px;
 }
