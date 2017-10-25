@@ -6,7 +6,9 @@ function readyNow() {
     console.log('js and jq sourced');
     getOwners();
     getPets();
-    $('#ownerReg').on('click', addOwner)
+    $('#ownerReg').on('click', addOwner);
+    $('.table').on('click', '#checkInBtn', checkOutFunction);
+
     //click handlers.
 
 
@@ -98,11 +100,19 @@ function sendPet() {
 
 //PUT ROUTES
 
+<<<<<<< HEAD
 function inOut() {
     console.log('in inOut');
     $.ajax({
         method: 'PUT',
         url: 'hotel/inOut/:id',
+=======
+function Out(date){
+    console.log('in inOut');
+    $.ajax({
+        method: 'PUT',
+        url:'hotel/inOut/' + id,
+>>>>>>> create-checkout-function
         data: check
     }).done(function (response) {
         console.log(response);
@@ -137,3 +147,11 @@ function deletePet() {
         alert('something wrong in deletePet');
     })//end of fail
 }//end deletePet
+
+function checkOutFunction(){
+  var checkDate = Date.now()
+  var id = $(this).closest('tr').data() // Need to figure out what this data will be called.
+  var outObject = {checkDate}
+  console.log(checkDate);
+  inOut(outObject);
+}
