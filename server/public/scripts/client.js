@@ -7,14 +7,13 @@ function readyNow() {
     getOwners();
     getPets();
     $('#ownerReg').on('click', addOwner);
-    $('.table').on('click', '#checkInBtn', checkOutFunction);
-
+    $("maintable").on("click", "#deleteBtn", deletePet);
+    //$('.table').on('click', '#checkInBtn', checkOutFunction);
     //click handlers.
-    $("#maintable").on('click', "#checkInBtn" ,inClicked());
-
-
+    //$("#maintable").on('click', "#checkInBtn" ,inClicked());
 
 }
+
 function addOwner() {
 
     var firstIn = $('#ownerFirstNameIn').val();
@@ -23,11 +22,7 @@ function addOwner() {
         first: firstIn,
         last: lastIn
     }
-    
-    sendOwner(owner)
-
-
-    
+    sendOwner(owner)    
 }
 
 
@@ -47,14 +42,6 @@ function getOwners() { //getting List data append in done
     });//end of fail
 } //end of getTables
 
-// function appendOwners(array) {
-//     for (var i = 0; i < array.length; i++) {
-//         var owner = array[i];
-//         var $dropDown = $("#ownerDropDown").append('<option value="data-id= ">' + owner.firstname + owner.lastname + '</option>');
-//     }
-//     console.log('owner');
-    
-// };
 
 //get pets for DOM
 function getPets() {
@@ -65,7 +52,7 @@ function getPets() {
     }).done(function (response) {
         console.log(response);
         var completeList = response
-        appendPets(completeList)
+        appendPets(completeList);
         }).fail(function (error) {
         alert('something went wront in getPets', error)
     });//end of fail
@@ -130,7 +117,7 @@ function editItem() {
 // DELETE ROUTES
 
 function deletePet() {
-    console.log('in deletePet');
+    console.log('delete clicked');
     $.ajax({
         method: 'DELETE',
         url: 'hotel/deletePet/:id'
@@ -141,24 +128,26 @@ function deletePet() {
     })//end of fail
 }//end deletePet
 
-function inClicked();
-    console.log('clicked in');
-    function sendPet() {
-        console.log('In sendPet');
-        $.ajax({
-            method: 'POST',
-            url: '/hotel/in' + petcheck,
-            Data: visitin
-        }).done(function (response) {
-            console.log(response);
-        }).fail(function (error) {
-            alert('something went wrong in sendPet', error)
-        })
-    }
-function checkOutFunction(){
-  var checkDate = Date.now()
-  var id = $(this).closest('tr').data() // Need to figure out what this data will be called.
-  var outObject = {checkDate}
-  console.log(checkDate);
-  inOut(outObject);
-}
+// function inClicked() {
+//     console.log('clicked in');
+//     function sendPet() {
+//         console.log('In sendPet');
+//         $.ajax({
+//             method: 'POST',
+//             url: '/hotel/in' + petcheck,
+//             Data: visitin
+//         }).done(function (response) {
+//             console.log(response);
+//         }).fail(function (error) {
+//             alert('something went wrong in sendPet', error)
+//         })
+//     }
+// }    
+        
+// function checkOutFunction(){
+//   var checkDate = Date.now()
+//   var id = $(this).closest('tr').data() // Need to figure out what this data will be called.
+//   var outObject = {checkDate}
+//   console.log(checkDate);
+//   inOut(outObject);
+// }

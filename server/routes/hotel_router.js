@@ -126,40 +126,40 @@ router.put('/editItem/:id', function(req, res){
     })
 }); //End PUT route that edits pets
 
-<<<<<<< HEAD
-// //This POST route edits whether the pets are in the hospital or not
-router.post('/in/:id', function(req, res){
-    var petcheck = req.params.id;
-    var checkInDate = req.body;
-    console.log('In out PUT:', petcheck, checInDate);
-=======
-// //This PUT route edits whether the pets are in the hospital or not
-router.put('/inOut/:id', function(req, res){
-    var inOutID = req.params.id;
-    var petEdit = req.body;
-    console.log('In out PUT:', inOutId, petEdit);
->>>>>>> master
-    pool.connect(function(errorConnectingToDB, db, done){
-        if(errorConnectingToDB){
-            console.log('PUT error', errorConnectingToDB);
-            res.sendStatus(501);
-        } else {
-            var queryText = 'INSERT INTO "pethotel_visits" ("checkin", "petcheck") VALUES($1, $2)'
-            db.query(queryText, [checkInDate, inOutID], function(errorMakingQuery, result){
-                if(errorMakingQuery){
-<<<<<<< HEAD
-                    conosle.log('error PUT query for in button', errorMakingQuery);
-=======
-                    console.log('error PUT query', errorMakingQuery);
->>>>>>> master
-                    res.sendStatus(500);
-                } else {
-                    res.sendStatus(201);
-                }
-            })
-        }
-    })
-}); //End POST for in
+// <<<<<<< HEAD
+// // //This POST route edits whether the pets are in the hospital or not
+// router.post('/in/:id', function(req, res){
+//     var petcheck = req.params.id;
+//     var checkInDate = req.body;
+//     console.log('In out PUT:', petcheck, checInDate);
+// =======
+// // //This PUT route edits whether the pets are in the hospital or not
+// router.put('/inOut/:id', function(req, res){
+//     var inOutID = req.params.id;
+//     var petEdit = req.body;
+//     console.log('In out PUT:', inOutId, petEdit);
+// >>>>>>> master
+//     pool.connect(function(errorConnectingToDB, db, done){
+//         if(errorConnectingToDB){
+//             console.log('PUT error', errorConnectingToDB);
+//             res.sendStatus(501);
+//         } else {
+//             var queryText = 'INSERT INTO "pethotel_visits" ("checkin", "petcheck") VALUES($1, $2)'
+//             db.query(queryText, [checkInDate, inOutID], function(errorMakingQuery, result){
+//                 if(errorMakingQuery){
+// <<<<<<< HEAD
+//                     conosle.log('error PUT query for in button', errorMakingQuery);
+// =======
+//                     console.log('error PUT query', errorMakingQuery);
+// >>>>>>> master
+//                     res.sendStatus(500);
+//                 } else {
+//                     res.sendStatus(201);
+//                 }
+//             })
+//         }
+//     })
+// }); //End POST for in
 
 // //This delete route deletes pets off the DB
 router.delete('/deletePet/:id', function(req, res){
