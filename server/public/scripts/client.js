@@ -1,12 +1,12 @@
-$(document).ready(readynow);
+$(document).ready(readyNow);
 
-var owner = {
-    first: jerry ,
-    last: berry
-}
-    var pet = {
-        name:terry
-}
+// var owner = {
+//     first: jerry ,
+//     last: berry
+// }
+//     var pet = {
+//         name:terry
+// }
 function readyNow(){
     console.log('js and jq sourced');
     getPets()
