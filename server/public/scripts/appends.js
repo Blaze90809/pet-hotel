@@ -3,8 +3,10 @@ function appendOwners(array) {
     
     for (var i = 0; i < array.length; i++) {
         var owner = array[i];
-        var $dropDown = $("#ownerDropDown").append('<option value="data-id= ">' + owner.firstname + " " + owner.lastname + '</option>');
+        var $dropDown = $("#ownerDropDown").append('<option id="owner" value=data-id"' + owner.id + '">' + owner.firstname + " " + owner.lastname + "</option>");
+        $dropDown.data('owner', owner)
     }
+
     console.log('owner');
 };
 

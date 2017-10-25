@@ -97,6 +97,7 @@ router.post('/pet', function (req, res) {
                         res.sendStatus(501);
                     } else {
                         res.sendStatus(200);
+                        
                     }
                 })
         }

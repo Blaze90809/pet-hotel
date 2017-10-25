@@ -7,6 +7,7 @@ function readyNow() {
     getOwners();
     getPets();
     $('#ownerReg').on('click', addOwner);
+    $("#petReg").on("click", sendPet);
     $("maintable").on("click", "#deleteBtn", deletePet);
     $('.table').on('click', '#checkOutBtn', checkOutFunction);
     $(".table").on('click', "#checkInBtn" , inClicked);
@@ -15,8 +16,8 @@ function readyNow() {
 
 }
 
-function addOwner() {
-
+function addOwner(e) {
+    e.preventDefault(); 
     var firstIn = $('#ownerFirstNameIn').val();
     var lastIn = $('#ownerLastName').val();
     var owner = {
@@ -61,6 +62,7 @@ function getPets() {
 
 //POST ROUTES
 function sendOwner(owner) {
+
     console.log('in sendOwner');
     $.ajax({
         method: "POST",
@@ -74,12 +76,24 @@ function sendOwner(owner) {
     })//end of fail
 }//end of send owner
 
-function sendPet() {
-    console.log('In sendPet');
+function sendPet(e) {
+    e.preventDefault(); 
+    var petName = $('#petName').val();
+    var petColor = $('#petColor').val();
+    var petBreed = $('#petBreed').val();
+    var newPet = { 
+        //owner: $('#owner').data('id'),
+        petname: petName,
+        color: petColor,
+        breed: petBreed
+    }
+    console.log('newPet', newPet);
+    
+    console.log('send pet clicked');
     $.ajax({
         method: 'POST',
         url: '/hotel/pet',
-        Data: pet
+        Data: newPet
     }).done(function (response) {
         console.log(response);
     }).fail(function (error) {
@@ -136,6 +150,7 @@ function checkOutFunction(){
   console.log(checkDate);
   out(outObject, id);
 }
+
 //This is the function when you check in a pet.
 function inClicked(){
 console.log('clicked in');
@@ -145,10 +160,11 @@ var visitin = {
     checkin: date,
     petcheck: petcheck
 }   
-    sendPet(visitin)
+    petVisit(visitin);
 console.log(visitin)
 };
-function sendPet(visitin) {
+
+function petVisit(visitin) {
     console.log('In sendPet');
     $.ajax({
         method: 'POST',
