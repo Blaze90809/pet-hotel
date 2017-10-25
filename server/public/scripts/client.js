@@ -44,14 +44,14 @@ function getOwners() { //getting List data append in done
     });//end of fail
 } //end of getTables
 
-function appendOwners(array) {
-    for (var i = 0; i < array.length; i++) {
-        var owner = array[i];
-        var $dropDown = $("#ownerDropDown").append('<option value="data-id= ">' + owner.firstname + owner.lastname + '</option>');
-    }
-    console.log('owner');
+// function appendOwners(array) {
+//     for (var i = 0; i < array.length; i++) {
+//         var owner = array[i];
+//         var $dropDown = $("#ownerDropDown").append('<option value="data-id= ">' + owner.firstname + owner.lastname + '</option>');
+//     }
+//     console.log('owner');
     
-};
+// };
 
 //get pets for DOM
 function getPets() {
@@ -62,8 +62,8 @@ function getPets() {
     }).done(function (response) {
         console.log(response);
         var completeList = response
-        //append here
-    }).fail(function (error) {
+        appendPets(completeList)
+        }).fail(function (error) {
         alert('something went wront in getPets', error)
     });//end of fail
 }//end of getPets
