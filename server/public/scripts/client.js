@@ -8,9 +8,10 @@ function readyNow() {
     getPets();
     $('#ownerReg').on('click', addOwner);
     $("maintable").on("click", "#deleteBtn", deletePet);
-    //$('.table').on('click', '#checkInBtn', checkOutFunction);
-    //click handlers.
-    //$("#maintable").on('click', "#checkInBtn" ,inClicked());
+    $('.table').on('click', '#checkOutBtn', checkOutFunction);
+    $(".table").on('click', "#checkInBtn" , inClicked);
+
+
 
 }
 
@@ -88,18 +89,18 @@ function sendPet() {
 
 //PUT ROUTES
 
-function Out(date){
+function out(outObject, id){
     console.log('in inOut');
     $.ajax({
         method: 'PUT',
         url:'hotel/inOut/' + id,
-        data: check
+        data: outObject
     }).done(function (response) {
         console.log(response);
     }).fail(function (response) {
-        alert('something wrong in inOut')
+        alert('something wrong in inOut', response)
     })
-}
+};
 
 function editItem() {
     console.log('in edit item');
@@ -128,26 +129,34 @@ function deletePet() {
     })//end of fail
 }//end deletePet
 
-// function inClicked() {
-//     console.log('clicked in');
-//     function sendPet() {
-//         console.log('In sendPet');
-//         $.ajax({
-//             method: 'POST',
-//             url: '/hotel/in' + petcheck,
-//             Data: visitin
-//         }).done(function (response) {
-//             console.log(response);
-//         }).fail(function (error) {
-//             alert('something went wrong in sendPet', error)
-//         })
-//     }
-// }    
-        
-// function checkOutFunction(){
-//   var checkDate = Date.now()
-//   var id = $(this).closest('tr').data() // Need to figure out what this data will be called.
-//   var outObject = {checkDate}
-//   console.log(checkDate);
-//   inOut(outObject);
-// }
+function checkOutFunction(){
+  var checkDate = new Date($.now());
+  var id = $(this).closest('button').data(); // Need to figure out what this data will be called.
+  var outObject = {checkout: checkDate}
+  console.log(checkDate);
+  out(outObject, id);
+}
+//This is the function when you check in a pet.
+function inClicked(){
+console.log('clicked in');
+var petcheck = $(this).closest('button').data();
+var date = new Date($.now());
+var visitin = {
+    checkin: date,
+    petcheck: petcheck
+}   
+    sendPet(visitin)
+console.log(visitin)
+};
+function sendPet(visitin) {
+    console.log('In sendPet');
+    $.ajax({
+        method: 'POST',
+        url: '/hotel/in',
+        Data: visitin
+    }).done(function (response) {
+        console.log(response);
+    }).fail(function (error) {
+        alert('something went wrong in sendPet', error)
+    })
+}
