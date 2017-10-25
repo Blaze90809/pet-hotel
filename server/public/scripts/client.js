@@ -100,19 +100,11 @@ function sendPet() {
 
 //PUT ROUTES
 
-<<<<<<< HEAD
-function inOut() {
-    console.log('in inOut');
-    $.ajax({
-        method: 'PUT',
-        url: 'hotel/inOut/:id',
-=======
 function Out(date){
     console.log('in inOut');
     $.ajax({
         method: 'PUT',
         url:'hotel/inOut/' + id,
->>>>>>> create-checkout-function
         data: check
     }).done(function (response) {
         console.log(response);
