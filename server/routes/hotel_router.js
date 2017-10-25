@@ -40,7 +40,7 @@ router.get('/owner', function(req, res){
             conosle.log('error connecting on GET route', errorConnectingtoDB);
             res.sendStatus(501);
         } else{
-            var queryText = //need Query text;
+            var queryText = 'SELECT * FROM "pethotel_owners";';
             db.query(queryText, function(errorMakingQuery, result){
                 done();
                 if(errorMakingQuery){
@@ -98,11 +98,12 @@ router.post('/pet', function(req, res){
                } else {
                    res.send(result.rows);
                }
-           }
+           })
         }
     })
 });//End pet POST route;
 
+//This PUT route edits pets
 router.put('/editItem/:id', function(req, res){
     var petID = req.params.id;
     var petEdit = req.body;
@@ -112,12 +113,63 @@ router.put('/editItem/:id', function(req, res){
             conosle.log('error PUT query', errorConnectingToDB);
             res.sendStatus(501);
         } else {
-
+            var queryText = //PUT route edits
+            db.query(queryText, , function(errorMakingQuery, result){
+                if(errorMakingQuery){
+                    conosle.log('error PUT query', errorMakingQuery);
+                    res.sendStatus(500);
+                } else {
+                    res.sendStatus(201);
+                }
+            })
         }
     })
-})
+}); //End PUT route that edits pets
 
-// router.delete('/deletePet/:id')
+//This PUT route edits whether the pets are in the hospital or not
+router.put('/inOut/:id', function(req, res){
+    var inOutID = req.params.id;
+    var petEdit = req.body;
+    conosle.log('In out PUT:', inOutId, petEdit);
+    pool.connect(function(errorConnectingToDB, db, done){
+        if(errorConnectingToDB){
+            conosle.log('PUT error', errorConnectingToDB);
+            res.sendStatus(501);
+        } else {
+            var queryText = //query needed for in-out PUT edit;
+            db.query(queryText, , function(errorMakingQuery, result){
+                if(errorMakingQuery){
+                    conosle.log('error PUT query', errorMakingQuery);
+                    res.sendStatus(500);
+                } else {
+                    res.sendStatus(201);
+                }
+            })
+        }
+    })
+}); //End PUT route that checks in/out
+
+//This delete route deletes pets off the DB
+router.delete('/deletePet/:id', function(req, res){
+var petID = req.params.id;
+conosle.log('DELETE pet id', petID);
+pool.connect(function(errorConnectingToDB, db, done){
+    if(errorConnectingToDB){
+        console.log('error connecting to DB', errorConnectingToDB);
+        res.sendStatus(500);
+    } else {
+        var queryText = 1234;
+        db.query(queryText, [petID], function(errorMakingQuery, result){
+            done();
+            if(errorMakingQuery){
+                console.log('error making query', errorMakingQuery);
+            } else {
+                res.send(result.rows);
+            }
+        })
+    }
+})
+}); //end delete route
 
 
 
