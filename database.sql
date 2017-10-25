@@ -1,3 +1,5 @@
+--create tables
+
 CREATE TABLE "pethotel_owners" (
 id SERIAL PRIMARY KEY,
 firstname VARCHAR (25),
@@ -18,3 +20,15 @@ checkin DATE,
 checkout DATE,
 petcheck INT REFERENCES pethotel_pets
 );
+
+
+--intiial table values
+INSERT INTO "pethotel_owners" ("firstname", "lastname")
+VALUES ('Misses', 'Owner');
+
+
+INSERT INTO "pethotel_pets" ("petname","breed", "color","customer_id")
+VALUES ('Scruffy','terrier','brown',1);
+
+INSERT INTO "pethotel_visits" ("checkin", "checkout", "petcheck")
+VALUES ('10/15/2017', '10/17/2017', 1);
