@@ -12,7 +12,7 @@ function readyNow(){
     getPets()
 
     //click handlers.
-    $("#checkInBtn").on('click', inClicked());
+    $("#maintable").on('click', "#checkInBtn" ,inClicked());
 }
 
 //GET ROUTES
@@ -120,8 +120,8 @@ function inClicked();
         console.log('In sendPet');
         $.ajax({
             method: 'POST',
-            url: '/hotel/inOut',
-            Data: pet
+            url: '/hotel/in' + petcheck,
+            Data: visitin
         }).done(function (response) {
             console.log(response);
         }).fail(function (error) {
