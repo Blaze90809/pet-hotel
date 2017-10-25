@@ -6,8 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="vendors/jquery.js"></script>
     <script src="scripts/client.js"></script>
+    <script src="scripts/appends.js"></script>
     <link rel="stylesheet" href="vendors/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="vendors/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Bungee+Inline" rel="stylesheet">
     <link rel="stylesheet" href="styles/style.css">
     <title>Document</title>
 </head>
@@ -34,7 +36,7 @@
                         <input type="text" class="form-control ownerInput" id="ownerFirstNameIn" placeholder="Enter Your First Name">
                         <label for="ownerLasNameInput">Last Name</label>
                         <input type="text" class="form-control ownerInput" id="ownerLastName" placeholder="Enter Your Last Name">
-                        <button class="btn btn-default" id="ownerReg">Complete Owner Registration</button>
+                        <button class="btn" id="ownerReg">Complete Owner Registration</button>
                     </div>
                 </form> <!-- end form -->
             </div> <!--div for form -->
@@ -45,21 +47,19 @@
                 <form><!-- form -->
                     <div class="form-group"><!-- form group -->
                         <h1>Pet Registration</h1>
-                        
                         <div class="dropdown"><!-- owner dropdown -->
+                            <p>Select Owner Name:</p>
                             <select name="owners" id="ownerDropDown">
-                                <option value="owner1">owner one</option><!-- NEEDS TO BE APPENDED -->
-                                <option value="owner2">owner two</option><!-- NEEDS TO BE APPENDED -->
-                                <option value="owner3">owner three</option><!-- NEEDS TO BE APPENDED -->
+                                
                             </select>
                         </div> <!-- owner dropdown -->
-                        <label for="petName">Pet Name</label>
+                        <label for="petName">Name</label>
                         <input type="text" class="form-control petInput" id="petName" placeholder="Enter Your Pet's Name">
-                        <label for="petColor">Pet Color</label>
+                        <label for="petColor">Color</label>
                         <input type="text" class="form-control petInput" id="petColor" placeholder="What color is your pet?">
-                        <label for="petBreed">Pet Breed</label>
+                        <label for="petBreed">Breed</label>
                         <input type="text" class="form-control petInput" id="petBreed" placeholder="What breed is your pet?">
-                        <button class="btn btn-default" id="petReg">Register Pet</button>
+                        <button class="btn" id="petReg">Register Pet</button>
                     </div><!-- end form group -->
                 </form><!-- end form -->
             </div><!-- div form holder -->
@@ -70,24 +70,24 @@
             <h1>Pet Visits</h1>
             <table class="table"><!-- Pet Table -->
             <!-- Table Headers -->
-                <th>Owner</th>
-                <th>Pet</th>
-                <th>Breed</th>
-                <th>Color</th>
-                <th>Update</th>
-                <th>Delete</th>
-                <th>Check In/Out</th>
+                <th class="col-md-3">Owner</th>
+                <th class="col-md-3">Pet</th>
+                <th class="col-md-3">Breed</th>
+                <th class="col-md-3">Color</th>
+                <th class="col-md-1">Update</th>
+                <th class="col-md-1">Delete</th>
+                <th class="col-md-1">Check In/Out</th>
             <!-- Table Headers -->
             
             <tbody><!-- table body -->
-                <tr> <!-- Rows are appended -->
+                <tr id="maintable"> <!-- Rows are appended -->
                     <td>John Doe</td> 
-                    <td>Lassie <input type="text"></td> <!-- Needs to be editable -->
-                    <td>Border Collie<input type="text"></td> <!-- Needs to be editable -->
-                    <td>So Pretty<input type="text"></td> <!-- Needs to be editable -->
-                    <td><button class="btn btn-default" id="updateBtn">Update</button></td> 
-                    <td><button class="btn btn-default" id="deleteBtn">Delete</button></td>
-                    <td><button class="btn btn-default" id="checkInBtn">Check In</button><button class="btn btn-default" id="checkOutBtn">Check Out</button></td>
+                    <td>Lassie <input type="text" id="updatePetName"></td> <!-- Needs to be editable -->
+                    <td>Border Collie<input type="text" id="updatePetBreed"></td> <!-- Needs to be editable -->
+                    <td>So Pretty<input type="text" id="updatePetColor"></td> <!-- Needs to be editable -->
+                    <td><button class="btn" id="updateBtn">Update Pet</button><button class="btn" id="saveUpdate">Save</button></td> 
+                    <td><button class="btn" id="deleteBtn">Delete</button></td>
+                    <td><button class="btn" id="checkInBtn">Check In</button><button class="btn" id="checkOutBtn">Check Out</button></td>
                 </tr>
             </tbody><!-- end table body -->
             
