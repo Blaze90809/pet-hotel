@@ -90,7 +90,7 @@ router.post('/pet', function (req, res) {
             res.sendStatus(501);
         } else {
             var queryText = 'INSERT INTO "pethotel_pets" ("petname", "breed", "color", "customer_id") VALUES ($1, $2, $3, $4);';
-                db.query(queryText, [petInfo.petname, petInfo.breed, petInfo.color, petInfo.customer_id], function (errorMakingQuery, result) {
+                db.query(queryText, [petInfo.petname, petInfo.breed, petInfo.color, petInfo.owner], function (errorMakingQuery, result) {
                     done();
                     if (errorMakingQuery) {
                         console.log('error sending PET post', error)

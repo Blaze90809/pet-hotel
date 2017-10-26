@@ -32,7 +32,7 @@ function addPet(e){
     var petName = $('#petName').val();
     var petColor = $('#petColor').val();
     var petBreed = $('#petBreed').val();
-    var petOwner = $('#ownerDropDown').data();
+    var petOwner = $('#ownerDropDown').val();
     var newPet = {
         owner: petOwner,
         petname: petName,
@@ -99,9 +99,10 @@ function sendPet(newPet) {
     $.ajax({
         method: 'POST',
         url: '/hotel/pet',
-        Data: newPet
+        data: newPet
     }).done(function (response) {
         console.log(response);
+        appendPets(response);
     }).fail(function (error) {
         alert('something went wrong in sendPet', error)
     })
@@ -139,9 +140,11 @@ function editItem() {
 
 function deletePet() {
     console.log('delete clicked');
+    petId = $(this).data('id');
     $.ajax({
         method: 'DELETE',
-        url: 'hotel/deletePet/:id'
+        url: 'hotel/deletePet/' + petId
+
     }).done(function (response) {
         console.log(response);
     }).fail(function (error) {
@@ -188,7 +191,7 @@ function appendOwners(array) {
 
     for (var i = 0; i < array.length; i++) {
         var owner = array[i];
-        var $dropDown = $("#ownerDropDown").append('<option id="owner" value=data-id"' + owner.id + '">' + owner.firstname + " " + owner.lastname + "</option>");
+        var $dropDown = $("#ownerDropDown").append('<option id="owner" value="' + owner.id + '">' + owner.firstname + " " + owner.lastname + "</option>");
         $dropDown.data('owner', owner)
         console.log($dropDown);
         
