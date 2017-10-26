@@ -29,6 +29,7 @@ function addOwner(e) {
 
 function addPet(e){
     e.preventDefault();
+    $('#maintable').empty();
     var petName = $('#petName').val();
     var petColor = $('#petColor').val();
     var petBreed = $('#petBreed').val();
@@ -102,7 +103,7 @@ function sendPet(newPet) {
         data: newPet
     }).done(function (response) {
         console.log(response);
-        appendPets(response);
+        getPets();
     }).fail(function (error) {
         alert('something went wrong in sendPet', error)
     })
@@ -201,6 +202,7 @@ function appendOwners(array) {
 };
 
 function appendPets(array) {
+    
     for (var i = 0; i < array.length; i++) {
         var rowData = array[i];
         var $tr = $('<tr></tr>');
