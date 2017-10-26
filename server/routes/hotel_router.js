@@ -18,7 +18,7 @@ router.get('/pet', function (req, res) {
             console.log('error connecting on GET route', errorConnectingtoDB);
             res.sendStatus(501);
         } else {
-            var queryText = 'SELECT * FROM "pethotel_owners" JOIN "pethotel_pets" ON "pethotel_pets"."customer_id" = "pethotel_owners"."id" JOIN "pethotel_visits" ON "pethotel_visits"."petcheck" = "pethotel_pets"."id";';
+            var queryText = 'SELECT * FROM "pethotel_owners" JOIN "pethotel_pets" ON "pethotel_pets"."customer_id" = "pethotel_owners"."id" LEFT OUTER JOIN "pethotel_visits" ON "pethotel_visits"."petcheck" = "pethotel_pets"."id";';
             db.query(queryText, function (errorMakingQuery, result) {
                 done();
                 if (errorMakingQuery) {

@@ -7,24 +7,39 @@ function readyNow() {
     getOwners();
     getPets();
     $('#ownerReg').on('click', addOwner);
-    $("#petReg").on("click", sendPet);
+    $("#petform").on("submit", addPet);
     $("maintable").on("click", "#deleteBtn", deletePet);
     $('.table').on('click', '#checkOutBtn', checkOutFunction);
-    $(".table").on('click', "#checkInBtn" , inClicked);
+    $(".table").on('click', "#checkInBtn", inClicked);
 
 
 
 }
 
 function addOwner(e) {
-    e.preventDefault(); 
+    e.preventDefault();
     var firstIn = $('#ownerFirstNameIn').val();
     var lastIn = $('#ownerLastName').val();
     var owner = {
         first: firstIn,
         last: lastIn
     }
-    sendOwner(owner)    
+    sendOwner(owner)
+}
+
+function addPet(e){
+    e.preventDefault();
+    var petName = $('#petName').val();
+    var petColor = $('#petColor').val();
+    var petBreed = $('#petBreed').val();
+    var petOwner = $('#ownerDropDown').data();
+    var newPet = {
+        owner: petOwner,
+        petname: petName,
+        color: petColor,
+        breed: petBreed
+    }
+    sendPet(newPet);
 }
 
 
@@ -55,7 +70,7 @@ function getPets() {
         console.log(response);
         var completeList = response
         appendPets(completeList);
-        }).fail(function (error) {
+    }).fail(function (error) {
         alert('something went wront in getPets', error)
     });//end of fail
 }//end of getPets
@@ -76,18 +91,9 @@ function sendOwner(owner) {
     })//end of fail
 }//end of send owner
 
-function sendPet(e) {
-    e.preventDefault(); 
-    var petName = $('#petName').val();
-    var petColor = $('#petColor').val();
-    var petBreed = $('#petBreed').val();
-    var newPet = { 
-        //owner: $('#owner').data('id'),
-        petname: petName,
-        color: petColor,
-        breed: petBreed
-    }
-    console.log('newPet', newPet);
+function sendPet(newPet) {
+
+    console.log(newPet);
     
     console.log('send pet clicked');
     $.ajax({
@@ -103,11 +109,11 @@ function sendPet(e) {
 
 //PUT ROUTES
 
-function out(outObject, id){
+function out(outObject, id) {
     console.log('in inOut');
     $.ajax({
         method: 'PUT',
-        url:'hotel/inOut/' + id,
+        url: 'hotel/inOut/' + id,
         data: outObject
     }).done(function (response) {
         console.log(response);
@@ -143,25 +149,25 @@ function deletePet() {
     })//end of fail
 }//end deletePet
 
-function checkOutFunction(){
-  var checkDate = new Date($.now());
-  var id = $(this).closest('button').data(); // Need to figure out what this data will be called.
-  var outObject = {checkout: checkDate}
-  console.log(checkDate);
-  out(outObject, id);
+function checkOutFunction() {
+    var checkDate = new Date($.now());
+    var id = $(this).closest('button').data(); // Need to figure out what this data will be called.
+    var outObject = { checkout: checkDate }
+    console.log(checkDate);
+    out(outObject, id);
 }
 
 //This is the function when you check in a pet.
-function inClicked(){
-console.log('clicked in');
-var petcheck = $(this).closest('button').data();
-var date = new Date($.now());
-var visitin = {
-    checkin: date,
-    petcheck: petcheck
-}   
+function inClicked() {
+    console.log('clicked in');
+    var petcheck = $(this).closest('button').data();
+    var date = new Date($.now());
+    var visitin = {
+        checkin: date,
+        petcheck: petcheck
+    }
     petVisit(visitin);
-console.log(visitin)
+    console.log(visitin)
 };
 
 function petVisit(visitin) {
@@ -176,3 +182,33 @@ function petVisit(visitin) {
         alert('something went wrong in sendPet', error)
     })
 }
+
+
+function appendOwners(array) {
+
+    for (var i = 0; i < array.length; i++) {
+        var owner = array[i];
+        var $dropDown = $("#ownerDropDown").append('<option id="owner" value=data-id"' + owner.id + '">' + owner.firstname + " " + owner.lastname + "</option>");
+        $dropDown.data('owner', owner)
+        console.log($dropDown);
+        
+    }
+
+    console.log('owner');
+};
+
+function appendPets(array) {
+    for (var i = 0; i < array.length; i++) {
+        var rowData = array[i];
+        var $tr = $('<tr></tr>');
+        $tr.data('rowData', rowData);
+        $tr.append('<td>' + rowData.firstname + " " + rowData.lastname + '</td>');
+        $tr.append('<td><input class="petEdit" type="text" id="updatePetName">' + rowData.petname + '</td>');
+        $tr.append('<td><input class="petEdit" type="text" id="updatePetBreed">' + rowData.breed + "</td>");
+        $tr.append('<td><input class="petEdit" type="text" id="updatePetColor">' + rowData.color + "</td>");
+        $tr.append('<button class="btn" id="updateBtn" data-id"' + rowData.id + '">Update Pet</button><button class="btn hideButton" id="saveUpdate" data-id"' + rowData.id + '">Save</button></td>');
+        $tr.append('<td><button class="btn" id="deleteBtn" data-id"' + rowData.id + '">Delete</button></td>');
+        $tr.append('<td><button class="btn" id="checkInBtn" data-id"' + rowData.id + '">Check In</button><button class="btn checkInOut" id="checkOutBtn" data-id"' + rowData.id + '">Check Out</button></td>');
+        $('#maintable').append($tr);
+    }
+};
