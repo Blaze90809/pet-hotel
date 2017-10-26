@@ -143,6 +143,13 @@ function deletePet() {
 
 function inClicked();
     console.log('clicked in');
+    var petcheck = $(this).closest('button').data();
+    var date = new Date($.now());
+    var visitin = {
+        checkin: date,
+        petcheck: petcheck
+    };
+    console.log(visitin)
     function sendPet() {
         console.log('In sendPet');
         $.ajax({
@@ -155,6 +162,7 @@ function inClicked();
             alert('something went wrong in sendPet', error)
         })
     }
+
 function checkOutFunction(){
   var checkDate = Date.now()
   var id = $(this).closest('tr').data() // Need to figure out what this data will be called.
